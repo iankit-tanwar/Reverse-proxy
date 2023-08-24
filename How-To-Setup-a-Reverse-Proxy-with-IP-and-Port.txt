@@ -21,3 +21,19 @@ sudo a2ensite frontend.dollorinfotech.com.conf
 sudo apache2ctl configtest
 
 sudo systemctl restart apache2
+
+
+
+---------------------- SSL certificate---------------------
+sudo apt update
+sudo apt install certbot python3-certbot-apache
+sudo certbot --apache -d ankit-frontend.dollorinfotech.com
+sudo certbot renew --dry-run
+sudo apache2ctl configtest
+sudo systemctl restart apache2
+
+
+------------------Set up Automatic Renewal (Optional):---------
+
+sudo crontab -e
+0 */12 * * * /usr/bin/certbot renew --quiet
